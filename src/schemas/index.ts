@@ -14,9 +14,9 @@ export type Product = z.infer<typeof ProductSchema>
 export const ProductsApiResponseSchema = z.object({
     data: z.array(ProductSchema),
     meta: z.object({
-        totalPages: z.number(), 
-        page: z.number(),       
-        lastPage: z.number(),  
+        totalPages: z.number(),
+        page: z.number(),
+        lastPage: z.number(),
     })
 });
 
@@ -64,7 +64,7 @@ export const CategoryWithProductsResponseSchema = CategorySchema.extend({
     products: z.array(ProductSchema)
 });
 
-const ShoppingCartContentsSchema = ProductSchema.pick({
+const ShoppingCartItemsSchema = ProductSchema.pick({
     name: true,
     image: true,
     price: true,
@@ -74,18 +74,18 @@ const ShoppingCartContentsSchema = ProductSchema.pick({
     quantity: z.number()
 })
 
-export const ShoppingCartSchema = z.array(ShoppingCartContentsSchema)
+export const ShoppingCartSchema = z.array(ShoppingCartItemsSchema)
 export type ShoppingCart = z.infer<typeof ShoppingCartSchema>
-export type CartItem = z.infer<typeof ShoppingCartContentsSchema>
+export type CartItem = z.infer<typeof ShoppingCartItemsSchema>
 
-const OrderContentSchema = z.object({
+const OrderItemsSchema = z.object({
     productId: z.string(),
     quantity: z.number(),
     price: z.number()
 })
 export const OrderSchema = z.object({
     total: z.number(),
-    contents: z.array(OrderContentSchema).min(1, { message: 'El carrito no puede ir vacio' })
+    items: z.array(OrderItemsSchema).min(1, { message: 'El carrito no puede ir vacio' })
 })
 
 export const SuccessResponseSchema = z.object({
@@ -97,10 +97,19 @@ export const ErrorResponseSchema = z.object({
     statusCode: z.number()
 })
 
-export const ContentsSchema = z.object({
+export const ItemsSchema = z.object({
     id: z.string(),
     quantity: z.number(),
     price: z.string(),
+    product: ProductSchema
+})
+
+export const SaleItemSchema = z.object({
+    id: z.string(),
+    quantity: z.number(),
+    price: z.number(),
+    productId: z.string(),
+    saleId: z.string(),
     product: ProductSchema
 })
 
@@ -108,10 +117,19 @@ export const SaleResponseSchema = z.object({
     id: z.string(),
     total: z.string(),
     transactionDate: z.string(),
-    contents: z.array(ContentsSchema)
+    items: z.array(ItemsSchema)
 })
-export const SalesResponseSchema = z.array(SaleResponseSchema)
-export type Sale = z.infer<typeof SaleResponseSchema>
+
+export const SaleSchema = z.object({
+    id: z.string(),
+    total: z.number(),
+    saleDate: z.string(),
+    saleItems: z.array(SaleItemSchema)
+})
+
+export const SalesResponseSchema = z.array(SaleSchema)
+export type Sale = z.infer<typeof SaleSchema>
+export type CreateSaleDto = z.infer<typeof OrderSchema>
 
 export const ProductFormSchema = z.object({
     name: z.string()
