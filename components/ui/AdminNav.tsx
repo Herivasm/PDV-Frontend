@@ -5,14 +5,14 @@ export default function AdminNav() {
         <header className="px-10 py-5 bg-gray-700 flex justify-between">
             <div className="flex gap-2 items-center">
                 <Link
-                    href={'/admin/products'}
-                    className="rounded text-white font-bold p-2"
-                >Productos</Link>
-
-                <Link
                     href={'/admin/sales'}
                     className="rounded text-white font-bold p-2"
                 >Ventas</Link>
+
+                <Link
+                    href={'/admin/products'}
+                    className="rounded text-white font-bold p-2"
+                >Productos</Link>
 
                 <Link
                     href={'/admin/categories'}
