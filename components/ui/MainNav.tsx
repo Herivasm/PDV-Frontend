@@ -5,8 +5,6 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { CategoriesApiResponseSchema, Category } from "@/src/schemas";
 import Link from "next/link";
 
-
-
 async function getCategories() {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/categories?limit=100` 
     const req = await fetch(url)
