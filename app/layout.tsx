@@ -19,6 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#4f46e5" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </head>
+
       <body
         className={`${onest.className} bg-gray-200`}
       >
