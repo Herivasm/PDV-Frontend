@@ -50,7 +50,7 @@ export default async function CategoriesPage({ searchParams }: { searchParams: S
         <>
             <Link
                 href='/admin/categories/new'
-                className="rounded bg-blue-400 font-bold py-2 px-10"
+                className="rounded bg-[#0047FF] text-white font-bold py-2 px-10"
             >
                 Nueva Categoría
             </Link>

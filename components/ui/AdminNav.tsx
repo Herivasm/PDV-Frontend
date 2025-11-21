@@ -1,8 +1,13 @@
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function AdminNav() {
     return (
-        <header className="px-10 py-5 bg-gray-700 flex justify-between">
+        <header className="px-10 py-5 bg-[#0047FF] flex justify-between">
+            <div className="flex gap-5 text-white">
+                <Logo />
+            </div>
+
             <div className="flex gap-2 items-center">
                 <Link
                     href={'/admin/sales'}
@@ -26,7 +31,7 @@ export default function AdminNav() {
 
                 <Link
                     href={'/'}
-                    className="rounded bg-blue-400 font-bold py-2 px-10"
+                    className="rounded bg-white font-bold py-2 px-10 text-[#0047FF]"
                 >Tienda</Link>
             </div>
         </header>

@@ -31,7 +31,7 @@ export default function AddProductForm({ children }: { children: React.ReactNode
             {children}
 
             <input
-                className="rounded bg-blue-400 font-bold py-2 w-full cursor-pointer"
+                className="rounded bg-[#0047FF] text-white font-bold py-2 w-full cursor-pointer"
                 type="submit"
                 value="Agregar Producto"
             />

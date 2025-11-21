@@ -51,7 +51,7 @@ export default async function SuppliersPage({ searchParams }: { searchParams: Se
         <>
             <Link
                 href='/admin/suppliers/new'
-                className="rounded bg-blue-400 font-bold py-2 px-10"
+                className="rounded bg-[#0047FF] text-white font-bold py-2 px-10"
             >
                 Nuevo Proveedor
             </Link>

@@ -8,7 +8,7 @@ export default function NewProductPage() {
         <>
             <Link
                 href='/admin/products?page=1'
-                className="rounded bg-blue-400 font-bold py-2 px-10"
+                className="rounded bg-[#0047FF] text-white font-bold py-2 px-10"
             >
                 Volver
             </Link>
