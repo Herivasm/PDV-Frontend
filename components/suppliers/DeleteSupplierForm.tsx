@@ -1,29 +1,55 @@
+"use client"
+
 import { Supplier } from "@/src/schemas"
-import { revalidatePath } from "next/cache"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import Modal from "@/components/ui/Modal"
+import { toast } from "react-toastify"
 
 export default function DeleteSupplierForm({ supplierId }: { supplierId: Supplier['id'] }) {
+    const [showModal, setShowModal] = useState(false)
+    const router = useRouter()
+
     const handleDeleteSupplier = async () => {
-        "use server"
+        try {
+            const url = `${process.env.NEXT_PUBLIC_API_URL}/suppliers/${supplierId}`
+            const req = await fetch(url, {
+                method: 'DELETE'
+            })
 
-        const url = `${process.env.API_URL}/suppliers/${supplierId}`
-        const req = await fetch(url, {
-            method: 'DELETE'
-        })
+            const json = await req.json()
 
-        await req.json()
+            if (!req.ok) {
+                throw new Error(json.message || 'Error al eliminar')
+            }
 
-        revalidatePath('/admin/suppliers')
+            toast.success('Proveedor eliminado correctamente')
+            setShowModal(false)
+            router.refresh()
+
+        } catch (error: any) {
+            toast.error(error.message)
+        }
     }
 
     return (
-        <form
-            action={handleDeleteSupplier}
-        >
-            <input
-                type="submit"
+        <>
+            <button
+                type="button"
                 className="text-red-600 hover:text-red-800 cursor-pointer"
-                value='Eliminar'
-            />
-        </form>
+                onClick={() => setShowModal(true)}
+            >
+                Eliminar
+            </button>
+
+            <Modal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                onConfirm={handleDeleteSupplier}
+                title="Eliminar Proveedor"
+            >
+                ¿Estás seguro? Si eliminas este proveedor, es posible que los productos asociados pierdan su clasificación.
+            </Modal>
+        </>
     )
 }
