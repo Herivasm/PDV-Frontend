@@ -58,9 +58,15 @@ export default async function SuppliersPage({ searchParams }: { searchParams: Se
 
             <Heading>Administrar Proveedores</Heading>
 
-            <SuppliersTable
-                suppliers={suppliers}
-            />
+            {
+                suppliers.length ? (
+                    <SuppliersTable
+                        suppliers={suppliers}
+                    />
+                ) : (
+                    <p className="text-xl text-center text-gray-900">Aún no hay proveedores registrados</p>
+                )
+            }
 
             <Pagination
                 page={meta.page}

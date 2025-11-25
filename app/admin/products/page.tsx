@@ -12,14 +12,14 @@ async function getCategories() {
     const req = await fetch(url, { cache: 'no-store' })
 
     if (!req.ok) return [];
-    
+
     const json = await req.json();
     const response = CategoriesApiResponseSchema.safeParse(json);
 
     if (response.success) {
         return response.data.data;
     }
-    
+
     return [];
 }
 
@@ -75,9 +75,15 @@ export default async function ProductsPage({ searchParams }: { searchParams: Sea
 
             <ProductSearch categories={categories} />
 
-            <ProductsTable
-                products={products}
-            />
+            {
+                products.length ? (
+                    <ProductsTable
+                        products={products}
+                    />
+                ) : (
+                    <p className="text-xl text-center text-gray-900">No hay productos aún</p>
+                )
+            }
 
             <Pagination
                 page={meta.page}

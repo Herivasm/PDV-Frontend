@@ -35,7 +35,7 @@ type SearchParams = Promise<{ page?: string }>
 export default async function CategoriesPage({ searchParams }: { searchParams: SearchParams }) {
     const { page: pageString } = await searchParams
     const page = pageString ? parseInt(pageString, 10) : 1
-    
+
     if (!isValidPage(page)) redirect('/admin/categories?page=1')
 
     const categoriesPerPage = 10
@@ -57,9 +57,16 @@ export default async function CategoriesPage({ searchParams }: { searchParams: S
 
             <Heading>Administrar Categorías</Heading>
 
-            <CategoriesTable
-                categories={categories}
-            />
+            {
+                categories.length ? (
+                    <CategoriesTable
+                        categories={categories}
+                    />
+                ) : (
+                    <p className="text-xl text-center text-gray-900">Aún no hay categorías registradas</p >
+
+                )
+            }
 
             <Pagination
                 page={meta.page}
