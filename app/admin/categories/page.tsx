@@ -63,8 +63,7 @@ export default async function CategoriesPage({ searchParams }: { searchParams: S
                         categories={categories}
                     />
                 ) : (
-                    <p className="text-xl text-center text-gray-900">Aún no hay categorías registradas</p >
-
+                    <p className="text-xl text-center text-gray-900">Aún no hay categorías registradas</p>
                 )
             }
 
