@@ -1,6 +1,7 @@
 import ProductCard from "@/components/products/ProductCard"
 import StoreSearch from "@/components/products/StoreSearch";
 import { ProductsApiResponseSchema } from "@/src/schemas"
+import { Suspense } from "react";
 
 async function getProducts(categoryId?: string, search?: string) {
     const params = new URLSearchParams();
@@ -42,7 +43,9 @@ export default async function StorePage({ searchParams }: { searchParams: Search
 
     return (
         <div className="px-5">
-            <StoreSearch />
+            <Suspense>
+                <StoreSearch />
+            </Suspense>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
                 {products.length > 0 ? (

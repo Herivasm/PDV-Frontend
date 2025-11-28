@@ -1,6 +1,7 @@
 import ShoppingCart from "@/components/cart/ShoppingCart";
 import MainNav from "@/components/ui/MainNav";
 import ToastNotification from "@/components/ui/ToastNotification";
+import { Suspense } from "react";
 
 export default function RootLayout({
     children,
@@ -9,7 +10,9 @@ export default function RootLayout({
 }>) {
     return (
         <>
-            <MainNav />
+            <Suspense>
+                <MainNav />
+            </Suspense>
 
             <main className="lg:flex  lg:h-screen lg:overflow-y-hidden">
                 <div className="md:flex-1 md:h-screen md:overflow-y-scroll pt-10  pb-32 px-10">
