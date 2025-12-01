@@ -55,7 +55,7 @@ export default function ProductsTable({ products }: { products: Product[] }) {
                                                 product.inventory
                                             ) : <p className="text-red-600 px-3 py-1 text-center text-sm uppercase font-bold">Agotado</p>}
                                         </td>
-                                        <td className="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 ">
+                                        <td className="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                             <div className='flex gap-5 justify-end items-center'>
                                                 <Link
                                                     className="text-indigo-600 hover:text-indigo-800"
@@ -63,9 +63,11 @@ export default function ProductsTable({ products }: { products: Product[] }) {
                                                     Editar <span className="sr-only">, {product.name}</span>
                                                 </Link>
 
+                                                {/* Disabled delete functionality 
                                                 <DeleteProductForm
                                                     productId={product.id}
                                                 />
+                                                */}
                                             </div>
                                         </td>
                                     </tr>

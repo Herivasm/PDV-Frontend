@@ -34,9 +34,11 @@ export default function CategoriesTable({ categories }: { categories: Category[]
                           Editar <span className="sr-only">, {category.name}</span>
                         </Link>
 
+                        {/* Disabled delete functionality 
                         <DeleteCategoryForm
                           categoryId={category.id}
                         />
+                        */}
                       </div>
                     </td>
                   </tr>
